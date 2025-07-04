@@ -1,12 +1,11 @@
-FROM python:3.10-slim
+FROM runpod/pytorch:2.0.1-py3.10-cuda11.8.0-devel-ubuntu22.04
 
-# Set workspace directory
 WORKDIR /workspace
 
-# Install dependencies
+# Install runpod
 RUN pip install --no-cache-dir runpod
 
-# Copy your handler file to workspace
+# Copy your handler file
 COPY rp_handler.py /workspace/
 
 # Start the container

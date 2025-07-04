@@ -1,37 +1,48 @@
 import runpod
 import os
 
-def handler(job):
+def handler(event):
     """
-    Simple test handler - just echo back the input
+    Handler function following RunPod official format
+    
+    Args:
+        event (dict): Contains the input data and request metadata
+        
+    Returns:
+        Any: The result to be returned to the client
     """
-    try:
-        # Get job input
-        job_input = job.get("input", {})
-        
-        # Check if model path exists
-        model_path = "/workspace/my-models-storage/models/fortnite-model"
-        model_exists = os.path.exists(model_path)
-        
-        # List contents of workspace
-        workspace_contents = []
-        if os.path.exists("/workspace"):
-            workspace_contents = os.listdir("/workspace")
-        
-        return {
-            "status": "success",
-            "input_received": job_input,
-            "model_path_exists": model_exists,
-            "workspace_contents": workspace_contents,
-            "message": "Handler is working! Model loading disabled for testing."
-        }
-        
-    except Exception as e:
-        return {
-            "error": str(e),
-            "status": "error"
-        }
+    
+    print(f"Worker Start")
+    
+    # Extract input data (RunPod official format)
+    input_data = event['input']
+    
+    prompt = input_data.get('prompt', 'test')
+    
+    print(f"Received prompt: {prompt}")
+    
+    # Check if model volume is mounted
+    model_path = "/workspace/my-models-storage/models/fortnite-model"
+    model_exists = os.path.exists(model_path)
+    
+    # List workspace contents
+    workspace_contents = []
+    if os.path.exists("/workspace"):
+        workspace_contents = os.listdir("/workspace")
+    
+    # Return result in RunPod format
+    result = {
+        "status": "success",
+        "prompt_received": prompt,
+        "model_path_exists": model_exists,
+        "workspace_contents": workspace_contents,
+        "message": "RunPod official handler working!"
+    }
+    
+    print(f"Returning result: {result}")
+    
+    return result
 
-if __name__ == "__main__":
-    print("Starting simple test handler...")
-    runpod.serverless.start({"handler": handler})
+# Start the Serverless function when the script is run
+if __name__ == '__main__':
+    runpod.serverless.start({'handler': handler})

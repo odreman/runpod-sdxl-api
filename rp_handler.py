@@ -7,31 +7,35 @@ def handler(job):
     job_input = job["input"]
     prompt = job_input.get('prompt', 'test')
     
-    # Verificar múltiples rutas posibles
-    paths_to_check = ["/", "/workspace", "/app", "/usr/src/app"]
+    # Verificar el volumen en su ubicación real
+    runpod_volume_exists = os.path.exists("/runpod-volume")
     
     result = {
         "status": "success",
         "prompt_received": prompt,
-        "current_working_directory": os.getcwd(),
-        "paths_checked": {}
+        "runpod_volume_exists": runpod_volume_exists
     }
     
-    for path in paths_to_check:
-        if os.path.exists(path):
-            try:
-                contents = os.listdir(path)
-                result["paths_checked"][path] = {
-                    "exists": True,
-                    "contents": contents
-                }
-            except Exception as e:
-                result["paths_checked"][path] = {
-                    "exists": True,
-                    "error": str(e)
-                }
-        else:
-            result["paths_checked"][path] = {"exists": False}
+    if runpod_volume_exists:
+        try:
+            volume_contents = os.listdir("/runpod-volume")
+            result["volume_contents"] = volume_contents
+            
+            # Verificar si hay la carpeta models
+            models_path = "/runpod-volume/models"
+            if os.path.exists(models_path):
+                models_contents = os.listdir(models_path)
+                result["models_exists"] = True
+                result["models_contents"] = models_contents
+                
+                # Verificar el modelo específico
+                fortnite_path = "/runpod-volume/models/fortnite-model"
+                result["fortnite_model_exists"] = os.path.exists(fortnite_path)
+            else:
+                result["models_exists"] = False
+                
+        except Exception as e:
+            result["volume_error"] = str(e)
     
     return result
 

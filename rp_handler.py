@@ -9,25 +9,31 @@ def handler(job):
     
     print(f"Received prompt: {prompt}")
     
-    # Solo verificar que el modelo existe, NO cargarlo
+    # Test torch import
+    try:
+        import torch
+        torch_available = True
+        cuda_available = torch.cuda.is_available()
+        torch_version = torch.__version__
+    except ImportError as e:
+        torch_available = False
+        cuda_available = False
+        torch_version = f"Import error: {str(e)}"
+    
+    # Verificar modelo
     model_path = "/runpod-volume/models/v1x0_fortnite_humanoid_sdxl1_vae_fix-000005"
     model_exists = os.path.exists(model_path)
-    
-    # Verificar componentes del modelo
-    model_components = []
-    if model_exists:
-        model_components = os.listdir(model_path)
     
     result = {
         "status": "success",
         "prompt_received": prompt,
-        "model_path": model_path,
         "model_exists": model_exists,
-        "model_components": model_components,
-        "message": "Model found but not loaded yet!"
+        "torch_available": torch_available,
+        "cuda_available": cuda_available,
+        "torch_version": torch_version,
+        "message": "Testing torch import!"
     }
     
-    print(f"Returning result: {result}")
     return result
 
 runpod.serverless.start({"handler": handler})

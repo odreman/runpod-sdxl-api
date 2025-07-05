@@ -2,5 +2,5 @@
 #
 # Le decimos a ComfyUI que la ruta base para buscar modelos, custom nodes, etc.,
 # también se encuentra en nuestro volumen de red.
-comfyui:
-  base_path: /workspace/ComfyUI
+#comfyui:
+#  base_path: /workspace/ComfyUI

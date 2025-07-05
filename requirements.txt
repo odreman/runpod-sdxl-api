@@ -1,17 +1,130 @@
-# requirements.txt
-#
+# requirements.txt - VERSIÓN SEGURA Y COMPLETA
+
 # Requisitos de RunPod
 runpod
 
-# Requisitos principales de ComfyUI y dependencias comunes
+# Dependencias principales de ComfyUI (ya incluidas en la imagen base, pero no hace daño tenerlas)
+# torch
+# torchvision
+# torchaudio
+
+# Dependencias explícitas que sabemos que necesitamos
 requests
 pillow
 numpy
 safetensors
 einops
-
-# Dependencias ESPECÍFICAS para DiffusersLoader y modelos relacionados
-# Estas versiones son conocidas por ser estables con ComfyUI.
 diffusers
 transformers
 accelerate
+
+# --- Dependencias de tu lista original que podrían ser requeridas por Custom Nodes ---
+# Mantendremos una lista amplia para asegurar la compatibilidad.
+aiohttp
+aiosignal
+anyio
+argon2-cffi
+arrow
+asttokens
+async-lru
+attrs
+babel
+beautifulsoup4
+bleach
+certifi
+cffi
+charset-normalizer
+click
+einops
+exceptiongroup
+executing
+fastjsonschema
+filelock
+frozenlist
+fsspec
+gitpython
+h11
+httpcore
+httpx
+huggingface-hub
+idna
+importlib-metadata
+isoduration
+jinja2
+json5
+jsonpointer
+jsonschema
+jsonschema-specifications
+kornia
+kornia_rs
+lxml
+markdown-it-py
+markupsafe
+matplotlib-inline
+mdurl
+mistune
+more-itertools
+mpmath
+multidict
+nest-asyncio
+networkx
+numpy
+omegaconf
+overrides
+packaging
+pandocfilters
+parso
+pexpect
+pillow
+platformdirs
+prometheus-client
+prompt-toolkit
+psutil
+ptyprocess
+pure-eval
+pycparser
+pygments
+pyjwt
+pynacl
+pyparsing
+python-dateutil
+python-json-logger
+pyyaml
+pyzmq
+referencing
+regex
+rfc3339-validator
+rfc3986-validator
+rich
+rpds-py
+safetensors
+scipy
+send2trash
+sentencepiece
+six
+smmap
+sniffio
+soundfile
+soupsieve
+spandrel
+stack-data
+sympy
+terminado
+tinycss2
+tokenizers
+toml
+tomli
+torchsde
+tqdm
+traitlets
+triton
+typer
+types-python-dateutil
+typing_extensions
+uri-template
+urllib3
+uv
+websocket-client
+wrapt
+yarl
+zipp

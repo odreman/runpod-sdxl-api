@@ -1,2 +1,17 @@
-runpod>=1.0.0
-torch>=2.0.0
+# requirements.txt
+#
+# Requisitos de RunPod
+runpod
+
+# Requisitos principales de ComfyUI y dependencias comunes
+requests
+pillow
+numpy
+safetensors
+einops
+
+# Dependencias ESPECÍFICAS para DiffusersLoader y modelos relacionados
+# Estas versiones son conocidas por ser estables con ComfyUI.
+diffusers
+transformers
+accelerate

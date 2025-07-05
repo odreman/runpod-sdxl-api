@@ -1,25 +1,17 @@
-# requirements.txt - VERSIÓN SEGURA Y COMPLETA
+# requirements.txt - VERSIÓN FINAL CON NUMPY FIJADO
 
-# Requisitos de RunPod
+# Forzamos la versión de numpy para evitar conflictos con la versión 2.0
+numpy==1.26.4
+
+# El resto de las dependencias
 runpod
-
-# Dependencias principales de ComfyUI (ya incluidas en la imagen base, pero no hace daño tenerlas)
-# torch
-# torchvision
-# torchaudio
-
-# Dependencias explícitas que sabemos que necesitamos
 requests
 pillow
-numpy
 safetensors
 einops
 diffusers
 transformers
 accelerate
-
-# --- Dependencias de tu lista original que podrían ser requeridas por Custom Nodes ---
-# Mantendremos una lista amplia para asegurar la compatibilidad.
 aiohttp
 aiosignal
 anyio
@@ -35,7 +27,6 @@ certifi
 cffi
 charset-normalizer
 click
-einops
 exceptiongroup
 executing
 fastjsonschema
@@ -68,14 +59,12 @@ mpmath
 multidict
 nest-asyncio
 networkx
-numpy
 omegaconf
 overrides
 packaging
 pandocfilters
 parso
 pexpect
-pillow
 platformdirs
 prometheus-client
 prompt-toolkit
@@ -97,7 +86,6 @@ rfc3339-validator
 rfc3986-validator
 rich
 rpds-py
-safetensors
 scipy
 send2trash
 sentencepiece
